@@ -1,7 +1,21 @@
+html {box-sizing:border-box;}
+*, *:before, *:after {box-sizing:inherit;}
+
+/*
+  dark green: rgb(94,180,73)
+  light green: rgb(128,195,115)
+
+*/
+
 .wrapper{
-  width: 490px;
+  width: 400px;
   display: block;
+  font-size: 60px;
+  font-weight: 100;
+  font-family: monospace;
+  margin: 20px auto;
 }
+
 .topBar {
   display: flex;
   flex-wrap: wrap;
@@ -10,23 +24,32 @@
   display: flex;
   flex-wrap: wrap;
 }
-.button {
+.button, .buttonFunction {
   width: 100px;
   height: 100px;
-  background-color: green;
+  background-color: rgb(94,180,73);
   color: white;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button:hover {
+  background-color: rgb(128,195,115);
 }
 .buttonFunction {
   width: 100px;
   height: 100px;
-  background-color: lightgreen;
+  background-color: rgb(128,195,115);
   color: gray;
 }
 .lcd {
   width: 300px;
   height: 100px;
-  background-color: green;
+  background-color: rgb(94,180,73);
   color: white;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
 }
