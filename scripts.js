@@ -1,9 +1,7 @@
-let arrayButtons = document.getElementsByClassName('button')
-
 var wrapper = document.getElementsByClassName('wrapper')[0]
 
 wrapper.addEventListener('click', function(e){
-  var clicked = e.target
+  var clicked = e.target.dataset.value
 
   console.log(clicked)
 })

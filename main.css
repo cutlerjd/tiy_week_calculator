@@ -1,5 +1,12 @@
 .wrapper{
   width: 490px;
+  display: block;
+}
+.topBar {
+  display: flex;
+  flex-wrap: wrap;
+}
+.bottomButtons {
   display: flex;
   flex-wrap: wrap;
 }
