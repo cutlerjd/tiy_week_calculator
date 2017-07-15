@@ -37,11 +37,17 @@ html {box-sizing:border-box;}
 .button:hover {
   background-color: rgb(128,195,115);
 }
+.button:active {
+  background-color: rgb(94,180,73);
+}
 .buttonFunction {
   width: 100px;
   height: 100px;
   background-color: rgb(128,195,115);
   color: gray;
+}
+.buttonFunction:active {
+  background-color: rgb(94,180,73);
 }
 .lcd {
   width: 300px;
