@@ -67,6 +67,39 @@ function maths(num1,num2,ops){
 }
 
 
+function pemda(arrayOps){
+  //Find operators that have * or /
+  let iM = -2
+  let iP = -2
+  while(iM !== -1){
+    let i = arrayOps.findIndex(function(item){
+      if(item == "*" || item =="/"){
+        return true
+      }
+    }
+    if(iM > -1){
+      arrayMaths(i)
+    }
+  })
+  while(iP !== -1){
+    let i = arrayOps.findIndex(function(item){
+      if(item == "*" || item =="/"){
+        return true
+      }
+    }
+    if(iP > -1){
+      arrayMaths(i)
+    }
+  })
+}
+}
+
+function arrayMaths(i){
+  let newNum = maths(valuesArray[i],valuesArray[i + 1],operatorsArray[i])
+  valuesArray[i] = newNum
+  valuesArray.splice(i+1,1)
+  operatorsArray.splice(i)
+}
 //This code will work and run the calculator. Re-writing to not use evil eval
 // wrapper.addEventListener('click', function(event){
 //   if(event.target.dataset.value){
