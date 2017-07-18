@@ -14,40 +14,26 @@ clear.addEventListener('click', function(event){
 
 wrapper.addEventListener('click',function(evt){
   if(evt.target.dataset.value % 1 === 0 || evt.target.dataset.value == "."){
+    //This handles new functions and clears the LCD
     if(toggle){
       lcd.innerHTML = ''
       toggle = false
     }
     let lcd_text = document.createTextNode(evt.target.dataset.value)
     lcd.appendChild(lcd_text)
-    console.log(valuesArray)
-    console.log(operatorsArray)
   } else if(evt.target.dataset.value){
-    if(valuesArray.length<1){
       valuesArray.push(lcd.innerHTML)
       operatorsArray.push(evt.target.dataset.value)
-      console.log(valuesArray)
-      console.log(operatorsArray)
+      //This is to make sure the next value will not clear the LCS
       toggle = true
-    }else {
-      valuesArray.push(lcd.innerHTML)
-      lcd.innerHTML = maths(valuesArray[0],valuesArray[1],operatorsArray[0])
-      valuesArray.splice(0)
-      operatorsArray.splice(0)
-      toggle = true
-      valuesArray.push(lcd.innerHTML)
-      operatorsArray.push(evt.target.dataset.value)
-      console.log(valuesArray)
-      console.log(operatorsArray)
     }
-  }else{
+  else{
     valuesArray.push(lcd.innerHTML)
-    lcd.innerHTML = maths(valuesArray[0],valuesArray[1],operatorsArray[0])
+    pemda()
     toggle = true
+    lcd.innerHTML = ''
+    lcd.innerHTML = valuesArray[0]
     valuesArray.splice(0)
-    operatorsArray.splice(0)
-    console.log(valuesArray)
-    console.log(operatorsArray)
   }
 })
 
@@ -67,39 +53,40 @@ function maths(num1,num2,ops){
 }
 
 
-function pemda(arrayOps){
-  //Find operators that have * or /
-  let iM = -2
-  let iP = -2
-  while(iM !== -1){
-    let i = arrayOps.findIndex(function(item){
-      if(item == "*" || item =="/"){
-        return true
-      }
-    }
-    if(iM > -1){
-      arrayMaths(i)
-    }
-  })
-  while(iP !== -1){
-    let i = arrayOps.findIndex(function(item){
-      if(item == "*" || item =="/"){
-        return true
-      }
-    }
-    if(iP > -1){
-      arrayMaths(i)
-    }
-  })
-}
+function arrayMath(indexNum) {
+  holdMyBeer = maths(valuesArray[indexNum], valuesArray[indexNum + 1], operatorsArray[indexNum]);
+  valuesArray.splice(indexNum, 1);
+  operatorsArray.splice(indexNum, 1);
+  valuesArray[indexNum] = holdMyBeer;
 }
 
-function arrayMaths(i){
-  let newNum = maths(valuesArray[i],valuesArray[i + 1],operatorsArray[i])
-  valuesArray[i] = newNum
-  valuesArray.splice(i+1,1)
-  operatorsArray.splice(i)
+function indexProcessor(i) {
+  arrayMath(i)
 }
+
+function findIndex() {
+  console.log(valuesArray)
+  console.log(operatorsArray)
+  let iM = operatorsArray.findIndex(function (item) {
+    if (item == "*" || item == "/") {
+      return true
+    }
+  })
+  if (iM < 0) {
+    iM = 0;
+  }
+  console.log(iM)
+  return iM
+}
+
+function pemda() {
+  while (operatorsArray.length > 0) {
+    findIndex()
+    arrayMath(findIndex())
+
+  }
+}
+
 //This code will work and run the calculator. Re-writing to not use evil eval
 // wrapper.addEventListener('click', function(event){
 //   if(event.target.dataset.value){
