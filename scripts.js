@@ -29,8 +29,6 @@ wrapper.addEventListener('click',function(evt){
     }
   else{
     valuesArray.push(lcd.innerHTML)
-    console.log(valuesArray)
-    console.log(operatorsArray)
     pemda()
     toggle = true
     lcd.innerHTML = ''
@@ -64,13 +62,7 @@ function arrayMath(indexNum) {
   valuesArray[indexNum] = holdMyBeer;
 }
 
-function indexProcessor(i) {
-  arrayMath(i)
-}
-
 function findIndex() {
-  console.log(valuesArray)
-  console.log(operatorsArray)
   let iM = operatorsArray.findIndex(function (item) {
     if (item == "*" || item == "/") {
       return true
@@ -79,15 +71,12 @@ function findIndex() {
   if (iM < 0) {
     iM = 0;
   }
-  console.log(iM)
   return iM
 }
 
 function pemda() {
   while (operatorsArray.length > 0) {
-    findIndex()
     arrayMath(findIndex())
-
   }
 }
 
