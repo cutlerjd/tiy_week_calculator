@@ -29,6 +29,8 @@ wrapper.addEventListener('click',function(evt){
     }
   else{
     valuesArray.push(lcd.innerHTML)
+    console.log(valuesArray)
+    console.log(operatorsArray)
     pemda()
     toggle = true
     lcd.innerHTML = ''
@@ -37,19 +39,21 @@ wrapper.addEventListener('click',function(evt){
   }
 })
 
-function maths(num1,num2,ops){
-  if(ops == "*"){
-    return num1 * num2
+function maths(num1, num2, ops) {
+  num1 = parseInt(num1)
+  num2 = parseInt(num2)
+  if (ops == "*") {
+    return num1 * num2;
   } else
-  if(ops == "/"){
-    return num1 / num2
-  } else
-  if (ops == "+"){
-    return num1 + num2
-  } else
-  if(ops == "-"){
-    return num1 - num2
-  }
+    if (ops == "/") {
+      return num1 / num2;
+    } else
+      if (ops == "+") {
+        return num1 + num2;
+      } else
+        if (ops == "-") {
+          return num1 - num2;
+        }
 }
 
 
