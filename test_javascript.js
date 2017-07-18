@@ -1,57 +1,66 @@
-let valuesArray = [3,4,2,1]
-let operatorsArray = ["+","*","-"]
+let valuesArray = [3, 4, 2, 1, 6, 2]
+let operatorsArray = ["+", "*", "-", "/", "+"]
 
-function maths(num1,num2,ops){
-  if(ops == "*"){
+function maths(num1, num2, ops) {
+  if (ops == "*") {
     return num1 * num2;
   } else
-  if(ops == "/"){
-    return num1 / num2;
-  } else
-  if (ops == "+"){
-    return num1 + num2;
-  } else
-  if(ops == "-"){
-    return num1 - num2;
-  }
+    if (ops == "/") {
+      return num1 / num2;
+    } else
+      if (ops == "+") {
+        return num1 + num2;
+      } else
+        if (ops == "-") {
+          return num1 - num2;
+        }
 }
 
 function arrayMath(indexNum) {
-    console.log(valuesArray)
-    console.log(operatorsArray)
-    holdMyBeer = maths(valuesArray[indexNum],valuesArray[indexNum+1],operatorsArray[indexNum]);
-    valuesArray.splice(indexNum,1);
-    operatorsArray.splice(indexNum,1);
-    valuesArray[indexNum] = holdMyBeer;
-    console.log(valuesArray)
-    console.log(operatorsArray)
+  holdMyBeer = maths(valuesArray[indexNum], valuesArray[indexNum + 1], operatorsArray[indexNum]);
+  valuesArray.splice(indexNum, 1);
+  operatorsArray.splice(indexNum, 1);
+  valuesArray[indexNum] = holdMyBeer;
+  console.log(valuesArray)
+  console.log(operatorsArray)
 }
 
-function findIndex(){
-    let iM = -2
-    let iP = -2
-    while(iM !== -1){
-        iM = operatorsArray.findIndex(function(item){
-        if(item == "*" || item =="/"){
-            return true
-        }
-    })
-        if(iM > -1){
-            arrayMath(iM)
-        }
+function indexProcessor(i) {
+  arrayMath(i)
+}
+console.log(valuesArray)
+console.log(operatorsArray)
+// findIndex()
+// indexProcessor(1)
+// findIndex()
+// indexProcessor(2)
+// findIndex()
+// indexProcessor(0)
+// findIndex()
+// indexProcessor(0)
+// findIndex()
+// indexProcessor(0)
+
+
+function findIndex() {
+  let iM = operatorsArray.findIndex(function (item) {
+    if (item == "*" || item == "/") {
+      return true
+    } else if (item == "*" || item == "/") {
+      return true
     }
-  while(iP !== -1){
-        iP = operatorsArray.findIndex(function(item){
-        if(item == "*" || item =="/"){
-            return true
-        }
-    })
-    if(iP > -1){
-      arrayMath(iP)
-    }
+  })
+  console.log(iM)
+  return iM
+}
+
+function pemda() {
+  console.log("Hello")
+  while (operatorsArray.length > 0) {
+    findIndex()
+    arrayMath(findIndex())
+    console.log(valuesArray)
+    console.log(operatorsArray)
   }
 }
-
-findIndex()
-findIndex()
-findIndex()
+pemda()
